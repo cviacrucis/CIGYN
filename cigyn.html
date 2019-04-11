@@ -104,18 +104,11 @@
 
     <div id="text" class="results"></div>
     <a href="./cigynSignUp.html" class="signUp btn btn-link fixed-bottom">Give me your number here!</a>
-    
+
 
     <script>
-        //Year button
-        document.getElementById('year').addEventListener("click", function (e) {
-            e.preventDefault()
-            var getUrl = "https://numbersapi.p.rapidapi.com/";
-            var userYear = document.getElementById('userYear');
-            getUrl += userYear.value + "/year?fragment=true&json=true";
-            var headers = new Headers();
-            headers.append("X-RapidAPI-Host", "numbersapi.p.rapidapi.com");
-            headers.append("X-RapidAPI-Key", "371fc67992mshe08c02135331771p1888dfjsnf454a929b520");
+
+        function fetchInfo() {
             fetch(getUrl, { method: 'GET', headers: headers })
                 .then(function (response) {
                     return response.json();
@@ -124,6 +117,23 @@
                     document.getElementById("number").innerHTML = JSON.stringify(res.number);
                     document.getElementById("text").innerHTML = JSON.stringify(res.text);
                 })
+        }
+
+        function apiHeaders() {
+            var headers = new Headers();
+            headers.append("X-RapidAPI-Host", "numbersapi.p.rapidapi.com");
+            headers.append("X-RapidAPI-Key", "371fc67992mshe08c02135331771p1888dfjsnf454a929b520");
+        }
+
+
+        //Year button
+        document.getElementById('year').addEventListener("click", function (e) {
+            e.preventDefault()
+            var getUrl = "https://numbersapi.p.rapidapi.com/";
+            var userYear = document.getElementById('userYear');
+            getUrl += userYear.value + "/year?fragment=true&json=true";
+            apiHeaders;
+            fetchInfo;
         })
         //Date button
         document.getElementById('date').addEventListener("click", function (e) {
@@ -198,36 +208,6 @@
                     document.getElementById("text").innerHTML = JSON.stringify(res.text);
                 })
         })
-
-
-        // Helpers
-
-        // function fetchInfo() {
-        //     fetch(getUrl, { method: 'GET', headers: headers })
-        //         .then(function (response) {
-        //             return response.json();
-        //         })
-        //         .then(function (res) {
-        //             document.getElementById("number").innerHTML = JSON.stringify(res.number);
-        //             document.getElementById("text").innerHTML = JSON.stringify(res.text);
-        //         })
-        // }
-
-
-        // function apiHeaders() {
-        //     var headers = new Headers();
-        //     headers.append("X-RapidAPI-Host", "numbersapi.p.rapidapi.com");
-        //     headers.append("X-RapidAPI-Key", "371fc67992mshe08c02135331771p1888dfjsnf454a929b520");
-        // }
-
-
-
-
-
-
-
-
-
     </script>
 
 </body>
